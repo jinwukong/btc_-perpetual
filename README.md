@@ -113,4 +113,4 @@ Optuna 做了30 ~ 88次 trial，自动搜索了 `learning_rate, num_leaves, subs
 ## 结语
 
 - **免责声明**：一切代码仅用于研究或参考，实盘盈亏责任自负。  
-- **推荐**：如果你和我一样想做快节奏的短线，其实更高频(秒级)或多时段多数据(小时线 / 日线)也可以融合。但越高频需要越多微观数据(逐笔或订单簿)，这部分可用开源 Kaiko / Cryptowatch / CryptoTick 等 data 付费才能拿全量。  
+- **高频数据部分**：越高频需要越多微观数据(逐笔或订单簿)，crypto可用开源 Kaiko / Cryptowatch / CryptoTick 等 data 付费才能拿全量。  
