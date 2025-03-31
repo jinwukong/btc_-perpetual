@@ -66,9 +66,9 @@
 
 **4. “多因子 + 短期涨跌” 的 LightGBM**  
 把 CFO/PWMA/RVI/CTA 因子等全部扔进特征，再加了 close, volume, buy_sell_diff 等基础列，然后建立 (5min/15min/30min后价格是否上涨) 三份 label；  
-为了确保没有未来泄漏，我使用**TimeSeriesSplit** 进行滚动切分：train: 0~(0.6N), test: (0.6N+1)(0.7*N) train: 0(0.7N), test: (0.7N+1)~(0.8*N) ...
-Optuna 做了30~88次 trial，自动搜索了 `learning_rate, num_leaves, subsample, colsample_bytree` 等。  
-最后 AUC 大约 0.52~0.53(不算太好，但起码证明了短期里的一点可预测性)。因为行情涨跌带有较多噪音，我平时也就把 0.52+ 当一个 baseline，然后后面可能通过订单簿大单数据或链上指标再提高一点点。
+为了确保没有未来泄漏，我使用**TimeSeriesSplit** 进行滚动切分：train: 0 ~ (0.6N), test: (0.6N+1)(0.7*N) train: 0(0.7N), test: (0.7N+1) ~ (0.8*N) ...
+Optuna 做了30 ~ 88次 trial，自动搜索了 `learning_rate, num_leaves, subsample, colsample_bytree` 等。  
+最后 AUC 大约 0.52 ~ 0.53(不算太好，但起码证明了短期里的一点可预测性)。因为行情涨跌带有较多噪音，我平时也就把 0.52+ 当一个 baseline，然后后面可能通过订单簿大单数据或链上指标再提高一点点。
 
 **5. RL 环境**  
 这个我只是想尝试 “每分钟 step，一步 reward = 净值变化 + 资金费扣除(多头) - (空头)。” Action= [-1,1] 表示做多/空的仓位大小。  
